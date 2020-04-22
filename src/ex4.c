@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-main()
+int main()
 {
 	char *arg[] = {"ls", "-l", (char*)0};
 	printf("before executing ls -l\n");

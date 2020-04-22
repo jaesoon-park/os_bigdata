@@ -1,6 +1,6 @@
 #include <unistd.h>
-
-main()
+#include <stdio.h>
+int main()
 {
 	printf("before executing ls -l\n");
 	execl("/bin/ls","ls","l",(char*)0);

@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include <sys/types.h>
-
-main()
+#include <stdio.h>
+int main()
 {
 	pid_t pid;
 
@@ -9,7 +9,7 @@ main()
 
 	i++;
 
-	printf(before calling fork(%d)\n",i);
+	printf("before calling fork(%d)\n",i);
 
 	
 	pid =fork();
@@ -19,5 +19,5 @@ main()
 	else if(pid >0)
 		printf("parent process(%d)\n",i--);
 	else
-		printf("fail to fork\n);
+		printf("fail to fork\n");
 }
