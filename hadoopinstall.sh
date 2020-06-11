@@ -44,3 +44,80 @@ EDF
 eval "$(cat ~/.bashrc | tail -n +12)"
 
 hadoop version
+
+cat<<\EDF>>$HADOOP_HOME/etc/hadoop/core-site.xml
+<configuration>
+	<property>
+		<name>fs.defaultFS</name>
+		<value>hdfs://localhost:9000</value>
+	</property>
+</configuration>
+EDF
+
+cat<<\EDF>>$HADOOP_HOME/etc/hadoop/hdfs-site.xml
+<configuration>
+	<property>
+		<name>dfs.replication</name>
+		<value>1</value>
+	</property>
+</configuration>
+EDF
+
+cat<<\EDF>>$HADOOP_HOME/etc/hadoop/mapred-site.xml
+<configuration>
+	<property>
+		<name>mapreduce.framework.name</name>
+		<value>yarn</value>
+	</property>
+</configuration>
+EDF
+
+cat<<\EDF>>$HADOOP_HOME/etc/hadoop/yarn-site.xml
+<configuration>
+	<property>
+		<name>yarn.nodemanager.aux-services</name>
+		<value>mapreduce_shuffle</value>
+	</property>
+</configuration>
+EDF
+
+cat<<\EDF>>$HADOOP_HOME/etc/hadoop/hadoop-env.sh
+#export JAVA_HOME=${JAVA_HOME}
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+EDF
+
+ssh-keygen -t rsa
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+ssh localhost
+
+hdfs namenode -format
+
+start-dfs.sh
+start-yarn.sh
+mr-jobhistory-daemon.sh start historyserver
+jps
+
+hdfs dfs -mkdir /user
+hdfs dfs -mkdir /user/ubuntu
+
+hdfs dfs -put $HADOOP_HOME/etc/hadoop input
+
+hadoop jar /home/ubuntu/apps/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.9.2.jar grep input output 'dfs[a-z.]+'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
