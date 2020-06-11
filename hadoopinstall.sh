@@ -104,7 +104,7 @@ cat<<\EDF>$HADOOP_HOME/etc/hadoop/mapred-site.xml
 		<name>mapreduce.framework.name</name>
 		<value>yarn</value>
 	</property>
-</configuration
+</configuration>
 EDF
 
 cat<<\EDF>$HADOOP_HOME/etc/hadoop/yarn-site.xml
