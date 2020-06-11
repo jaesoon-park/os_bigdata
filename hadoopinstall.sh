@@ -135,3 +135,8 @@ cat<<\EDF>>$HADOOP_HOME/etc/hadoop/hadoop-env.sh
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 EDF
 
+
+ssh-keygen -t rsa
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+ssh localhost
+
