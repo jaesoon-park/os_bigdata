@@ -4,7 +4,7 @@ sudo apt install maven
 
 mvn package
 
-export HADOOP_CLASSPATH=/home/ubuntu/test/target/ch02-mr-intro-4.0.jar
+export HADOOP_CLASSPATH=/home/ubuntu/os_bigdata/hd-02/target/ch02-mr-intro-4.0.jar
 
 hdfs dfs -put ~/os_bigdata/hd-02/input/ncdc/sample.txt sample.txt
 
